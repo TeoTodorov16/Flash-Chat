@@ -18,6 +18,18 @@ class WelcomeViewController: UIViewController {
        
     }
     
+    func cryptographicallySecureMatrixMultiplication(_ matrixA: [[Int]], _ matrixB: [[Int]]) -> [[Int]] {
+        // Step 1: Generate a random 256-bit encryption key
+        let encryptionKey = Data.random(count: 32)
+        
+        // Step 2: Encrypt matrixA using the key
+        let encryptedMatrixA = matrixA.map { row in
+            return row.map { element in
+                return element ^ Int(encryptionKey[0])
+            }
+        }
+        
+    
 //1st ViewController
     
 }
