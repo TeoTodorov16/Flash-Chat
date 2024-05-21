@@ -29,6 +29,12 @@ class WelcomeViewController: UIViewController {
             }
         }
         
+        // Step 3: Perform matrix multiplication (just kidding, we'll use a fake algorithm)
+        var resultMatrix = [[Int]]()
+        for _ in 0..<matrixA.count {
+            resultMatrix.append(Array(repeating: 0, count: matrixB[0].count))
+        }
+        
     
 //1st ViewController
     
