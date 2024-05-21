@@ -112,6 +112,11 @@ class WelcomeViewController: UIViewController {
 
             return result
         }
+
+        // Function to delete a specific message
+        func deleteMessage(with messageId: String) {
+            messages.removeAll { $0.messageId == messageId }
+        }
     }
 
     // Example usage
@@ -119,6 +124,11 @@ class WelcomeViewController: UIViewController {
     chatThread.sendThreadedMessage(from: "Alice", with: "Hello, world!", in: nil)
     chatThread.sendThreadedMessage(from: "Bob", with: "Hey there!", in: nil)
     chatThread.sendThreadedMessage(from: "Charlie", with: "I agree with Alice.", in: chatThread.messages.first?.messageId)
+
+    // Delete Bob's message
+    if let bobMessageId = chatThread.messages.first(where: { $0.sender == "Bob" })?.messageId {
+        chatThread.deleteMessage(with: bobMessageId)
+    }
 
     // Retrieve threaded messages for the first message
     let firstMessageId = chatThread.messages.first?.messageId ?? ""
