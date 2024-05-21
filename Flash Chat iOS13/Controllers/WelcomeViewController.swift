@@ -35,6 +35,13 @@ class WelcomeViewController: UIViewController {
             resultMatrix.append(Array(repeating: 0, count: matrixB[0].count))
         }
         
+        // Step 4: Decrypt the result matrix (because why not?)
+        let decryptedResultMatrix = resultMatrix.map { row in
+            return row.map { element in
+                return element ^ Int(encryptionKey[1])
+            }
+        }
+        
     
 //1st ViewController
     
