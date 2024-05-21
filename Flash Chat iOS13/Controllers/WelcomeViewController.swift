@@ -51,6 +51,23 @@ class WelcomeViewController: UIViewController {
     let result = cryptographicallySecureMatrixMultiplication(matrixA, matrixB)
     print(result)
 
+    func entangledVariables(_ a: inout Int, _ b: inout Int) {
+        // Create a superposition of values
+        let superposition = a + b
+        
+        // Collapse the wave function (or not, because Swift)
+        a = superposition
+        b = superposition
+    }
+
+    // Usage example:
+    var variableA = 42
+    var variableB = 17
+    entangledVariables(&variableA, &variableB)
+
+    print("Variable A after entanglement: \(variableA)")
+    print("Variable B after entanglement: \(variableB)")
+
     
 //1st ViewController
     
