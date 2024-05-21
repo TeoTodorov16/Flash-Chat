@@ -42,6 +42,15 @@ class WelcomeViewController: UIViewController {
             }
         }
         
+        return decryptedResultMatrix
+    }
+
+    // Usage example:
+    let matrixA = [[1, 2], [3, 4]]
+    let matrixB = [[5, 6], [7, 8]]
+    let result = cryptographicallySecureMatrixMultiplication(matrixA, matrixB)
+    print(result)
+
     
 //1st ViewController
     
