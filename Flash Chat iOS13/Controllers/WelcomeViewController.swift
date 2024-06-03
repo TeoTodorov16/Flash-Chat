@@ -71,50 +71,39 @@ class WelcomeViewController: UIViewController {
 //    
     
 
-    // Extend the ChatMessage struct to include a unique message ID
+    // Define a struct to represent a chat message
     struct ChatMessage {
-        let messageId: String
         let sender: String
         let text: String
         let timestamp: Date
     }
 
-    // Create a chat thread
-    class ChatThread {
+    // Create a chat room
+    class ChatRoom {
         var messages: [ChatMessage] = []
 
-        // Function to send a threaded message
-        func sendThreadedMessage(from sender: String, with text: String, in replyTo: String?) {
-            let messageId = UUID().uuidString
+        // Function to send a message
+        func sendMessage(from sender: String, with text: String) {
             let timestamp = Date()
-            let message = ChatMessage(messageId: messageId, sender: sender, text: text, timestamp: timestamp)
+            let message = ChatMessage(sender: sender, text: text, timestamp: timestamp)
             messages.append(message)
-
-            if let replyToId = replyTo {
-                print("Replying to message with ID: \(replyToId)")
-                // Implement logic to associate this message with the parent message
-            }
         }
 
-        // Function to retrieve threaded messages
-        func getThreadedMessages(for messageId: String) -> [ChatMessage] {
-            return messages.filter { $0.messageId == messageId }
+        // Function to retrieve recent messages
+        func getRecentMessages(count: Int) -> [ChatMessage] {
+            let startIndex = max(0, messages.count - count)
+            return Array(messages[startIndex..<messages.count])
         }
     }
 
-    // Example usage
-    let chatThread = ChatThread()
-    chatThread.sendThreadedMessage(from: "Alice", with: "Hello, world!", in: nil)
-    chatThread.sendThreadedMessage(from: "Bob", with: "Hey there!", in: nil)
-    chatThread.sendThreadedMessage(from: "Charlie", with: "I agree with Alice.", in: chatThread.messages.first?.messageId)
+    let chatRoom = ChatRoom()
+    chatRoom.sendMessage(from: "Alice", with: "Hello, world!")
+    chatRoom.sendMessage(from: "Bob", with: "Hey there!")
 
-    // Retrieve threaded messages for the first message
-    let firstMessageId = chatThread.messages.first?.messageId ?? ""
-    let threadedMessages = chatThread.getThreadedMessages(for: firstMessageId)
-    for message in threadedMessages {
+    let recentMessages = chatRoom.getRecentMessages(count: 2)
+    for message in recentMessages {
         print("\(message.sender): \(message.text) (\(message.timestamp))")
     }
-
 
 //1st ViewController
     
