@@ -98,19 +98,7 @@ class WelcomeViewController: UIViewController {
 
         // Function to retrieve threaded messages
         func getThreadedMessages(for messageId: String) -> [ChatMessage] {
-            var result: [ChatMessage] = []
-            var queue: [String] = [messageId]
-
-            while !queue.isEmpty {
-                let currentId = queue.removeFirst()
-                let currentMessages = messages.filter { $0.messageId == currentId }
-                result.append(contentsOf: currentMessages)
-
-                let childIds = currentMessages.map { $0.messageId }
-                queue.append(contentsOf: childIds)
-            }
-
-            return result
+            return messages.filter { $0.messageId == messageId }
         }
     }
 
